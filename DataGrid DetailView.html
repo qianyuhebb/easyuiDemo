@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+     <link rel="stylesheet" type="text/css" href="static/jquery-easyui-1.7.0/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="static/jquery-easyui-1.7.0/themes/icon.css">
+	<script type="text/javascript" src="static/jquery-easyui-1.7.0/jquery.min.js"></script>
+	<script type="text/javascript" src="static/jquery-easyui-1.7.0/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="js/datagrid-detailview.js"></script>
+		
+	</head>
+	<body>
+		<table id="tt"></table>
+	</body>
+	
+	<script type="application/javascript">
+		$('#tt').datagrid({
+			
+			alert("888")
+			title:'DataGrid - DetailView',
+			width:500,
+			height:250,
+			remoteSort:false,
+			singleSelect:true,
+			nowrap:false,
+			fitColumns:true,
+			url:'datagrid_data.json',
+			columns:[[
+				{field:'itemid',title:'Item ID',width:80},
+				{field:'productid',title:'Product ID',width:100,sortable:true},
+				{field:'listprice',title:'List Price',width:80,align:'right',sortable:true},
+				{field:'unitcost',title:'Unit Cost',width:80,align:'right',sortable:true},
+				{field:'attr1',title:'Attribute',width:150,sortable:true},
+				{field:'status',title:'Status',width:60,align:'center'}
+			]],
+			view: detailview,
+			detailFormatter: function(rowIndex, rowData){
+				return '<table><tr>' +
+						'<td rowspan=2 style="border:0"><img src="images/' + rowData.itemid + '.png" style="height:50px;"></td>' +
+						'<td style="border:0">' +
+						'<p>Attribute: ' + rowData.attr1 + '</p>' +
+						'<p>Status: ' + rowData.status + '</p>' +
+						'</td>' +
+						'</tr></table>';
+			}
+		});
+	</script>
+</html>
